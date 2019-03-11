@@ -117,14 +117,28 @@ def game_hash
   }
 end
 
+def all_players
+  # get a list of all the players
+  home_players = game_hash[:home][:players]
+  away_players = game_hash[:away][:players]
+  home_players.merge(away_players)
+end
 
-# def num_points_scored(player_name)
-#   # get a list of all the players
-#   # find the player whose name matches the argument 'player_name'
-#   # return that player's points
-# end
+def num_points_scored(player_name)
+  all_players[player_name][:points]
+end
 
+def shoe_size(player_name)
+  all_players[player_name][:shoe]
+end
 
+def team_colors(team_name)
+  if game_hash[:home][:team_name] == team_name
+    game_hash[:home][:colors]
+  else
+    game_hash[:away][:colors]
+  end
+end
 
 
 # # EXERCISE:
