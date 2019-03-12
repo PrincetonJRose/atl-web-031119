@@ -27,22 +27,26 @@ def process_book(book_info)
   }
 end
 
-def display_book(data)
+def show_book(data)
   puts "=" * 30
   puts "Title: #{data[:title]}"
   puts "Authors: #{data[:authors]}"
   puts "Description: #{data[:description]}"
 end
 
+def display_results(data)
+  puts "\n\n**Search Results**\n\n"
+  data['items'].each do |book_info|
+    book = process_book(book_info)
+    show_book(book)
+  end
+end
+
 def run
   welcome
   query = get_search_term
   data = search_for_books(query)
-  puts "\n\n**Search Results**\n\n"
-  data['items'].each do |book_info|
-    book = process_book(book_info)
-    display_book(book)
-  end
+  display_results(data)
 end
 
 run
