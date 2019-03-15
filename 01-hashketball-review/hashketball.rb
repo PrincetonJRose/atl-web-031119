@@ -117,6 +117,20 @@ def game_hash
   }
 end
 
+def team_points(team)
+  points = team[:players].values.map { |player| player[:points] }
+  total = 0
+  points.each {|x| total += x}
+  total
+end
+
+def team_point_totals(hash)
+  {
+    home: team_points(hash[:home]),
+    away: team_points(hash[:away])
+  }
+end
+
 def all_players
   # get a list of all the players
   home_players = game_hash[:home][:players]
@@ -140,6 +154,25 @@ def team_colors(team_name)
   end
 end
 
+def my_map(items)
+  result = []
+  items.each do |item|
+    modified_item = yield(item)
+    result.push(modified_item)
+  end
+  result
+end
+
+def my_select(items)
+  result = []
+  items.each do |item|
+    if yield(item)
+      result.push(item)
+    end
+  result
+end
+
+binding.pry
 
 # # EXERCISE:
 # # Define a method called get_names that takes an array of instructors
