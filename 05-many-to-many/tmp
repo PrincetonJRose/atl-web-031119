@@ -1,0 +1,46 @@
+### Common Looping situations and the most appropriate method
+##  * Counting up - x.times { |i| ..... }
+##  * Looping based on a condition - while/until (condition) ....
+##  * Looping over every item in a data set - items.each
+
+### Enumerable methods - Things to care about
+##  * when they're useful / what is it supposed to do
+##  * knowing what value it returns
+##  * knowing what it _expects from you_ - what arguments does it need?
+##  NOTE: When you give them a block, they use it on your behalf.
+##   The block is one of the arguments to the enumerable method!
+
+### Different methods
+## * each
+##  * its useful when you just want to a call
+##    a method or print every item in some data structure
+##  * it will always return the original object it was called on
+##  * it passes you each object in the array, your block can do whatever!
+
+def print_doubles(nums)
+  nums.each do |x|
+     puts x * 2
+  end
+end
+
+### Each will NOT track the intermediate work.
+
+example = print_doubles(nums)
+## The value of example will be nums since each always returns
+## item its called on and `nums.each` is the last method call in
+## print_doubles.
+
+
+## * map
+##   * its useful when i want to build a modified set of values
+##     based on some starting array or hash
+##   * it always returns a new collection, based on running the block
+##     on each item in the starting collection
+
+## * select/reject
+##   * its useful when i want to keep some but not all of the objects
+##     in some starting data set
+##   *
+
+binding.pry
+

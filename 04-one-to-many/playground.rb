@@ -11,9 +11,9 @@ jurgen = Pet.new('Jurgen', 'Dog', 'December')
 
 roni = Person.new('Roni', 23)
 
-brit.adopt(seyla)
 brit.adopt(jurgen)
+brit.adopt(seyla)
 
-
+brit.donate(roni, seyla)
 
 binding.pry

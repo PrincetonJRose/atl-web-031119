@@ -6,4 +6,11 @@ class Student
     @favorite_movie = favorite_movie
     @sleepiness = sleepiness
   end
+
+  def teachers
+    my_mods = Mod.all.select do |mod|
+      mod.student == self
+    end
+    my_mods.map { |mod| mod.teacher }
+  end
 end

@@ -1,21 +1,23 @@
 class Person
   self.attr_reader(:name, :age)
-  attr_accessor :pets
   ## attr_reader, attr_writer, attr_accessor
 
-  def initialize(name, age, pets=[])
+  def initialize(name, age)
     @name = name
     @age = age
-    @pets = pets
+  end
+
+  def pets
+    Pet.all.select do |pet|
+      pet.owner == self
+    end
   end
 
   def adopt(pet)
     pet.owner = self
-    self.pets << pet
   end
 
   def donate(friend, pet)
-    friend.pets << pet
     pet.owner = friend
   end
 
