@@ -15,6 +15,7 @@ start_of_mod1 = Date.new(2019, 03, 11)
 Mod.new(brit, maddie, 'ruby', start_of_mod1)
 Mod.new(brit, ansara, 'ruby', start_of_mod1)
 Mod.new(roni, ansara, 'ruby', start_of_mod1)
+Mod.new(safae, ansara, 'javascript', Date.new(2019, 04, 29))
 
 puts 'Good morning!'
 

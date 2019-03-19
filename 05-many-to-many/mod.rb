@@ -14,4 +14,9 @@ class Mod
   def self.all
     @@mods
   end
+
+  def transfer(new_teacher, new_subject)
+    @teacher = new_teacher
+    @subject = new_subject
+  end
 end

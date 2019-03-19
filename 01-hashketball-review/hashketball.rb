@@ -118,10 +118,17 @@ def game_hash
 end
 
 def team_points(team)
-  points = team[:players].values.map { |player| player[:points] }
+  players = team[:players]
+  points = []
+  players.values.each do |player|
+    points.push(player[:points])
+  end
   total = 0
   points.each {|x| total += x}
   total
+
+
+  # points = team[:players].values.map { |player| player[:points] }
 end
 
 def team_point_totals(hash)
