@@ -23,7 +23,6 @@ A tiny library.
 * make a wonderful homepage
 * list all the books
 * get info on a single book
-* maybe add some very good doggos to our library tomorrow? 😍
 
 ### Concepts
 
@@ -31,6 +30,7 @@ A tiny library.
 * HTTP (Requests and Responses)
 * Routes
 * ERB
+* Params?
 
 ### Getting Familiar with HTTP
 
@@ -43,16 +43,22 @@ A tiny library.
 * Important question: What happens after a response is sent?
 
 #### Parts of a Request
-- ???
+- Verb
+- Path
+- Headers
+- Body (optional)
 
 #### Parts of a Response
-- ???
+- Status Code
+- Headers
+- Body
 
 ### Intro to Sinatra
 
 What's the purpose of Sinatra? What does it do for us?
 
-* ???
+* Connects a set of routes to methods to generate a response
+* I.e. It builds a routing table and uses that to answer each request.
 
 Here's the plan:
 
