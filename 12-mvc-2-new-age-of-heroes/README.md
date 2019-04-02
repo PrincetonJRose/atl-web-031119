@@ -2,11 +2,14 @@
 
 ### Objectives
 
-* Pick up from yesterday by finishing our homepage
-* Recognize MVC as an architectural pattern
+* Pick up from yesterday by making individual book pages
+  * Talk about wildcards?
+  * Do we see @books in the individual book page?
+  * How can we find out?
 * Learn how to perform the standard CRUD operations
   * What are they again?
 * Encounter Forms at the nexus of MVC 😎
+  * Talk about route precedence
 
 REMINDER: verb + path == route
 

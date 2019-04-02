@@ -1,6 +1,12 @@
 class ApplicationController < Sinatra::Base
   set :views, 'app/views'
 
+  def initialize
+    super
+    puts "I just built a brand new controller. Woohoo!\n\n\n"
+    puts self
+  end
+
   self.get('/') do
     "This is just me testing something..."
   end
@@ -12,6 +18,29 @@ class ApplicationController < Sinatra::Base
   get '/books' do
     @books = Book.all
     erb(:books)
+  end
+
+  get '/books/new' do
+    ## if params[:title] != nil
+    ##   Book.create .....
+    ##   redirect to the new book's page
+    ## else
+    ##   erb :new
+    ## end
+    erb :new
+  end
+
+  post '/books' do
+    @book = Book.create(title: params[:title],
+                        author: params[:author] || 7,
+                        snippet: params[:snippet])
+    redirect "/books/#{@book.id}"
+  end
+
+  get '/books/:id' do
+    # @books = Book.all
+    @book = Book.find(params[:id])
+    erb :show
   end
 
   get '/cats' do

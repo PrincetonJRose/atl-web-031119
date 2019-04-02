@@ -13,7 +13,13 @@
 </p>
 
 <ul>
-  <% books.each do |book| %>
-    <li><%= book.title %></li>
+  <% @books.each do |book| %>
+    <li>
+      <a href="/books/<%= book.id %>">
+        <%= book.title %>
+      </a>
+    </li>
   <% end %>
 </ul>
+
+<a href="/books/new">Add a new book!</a>
