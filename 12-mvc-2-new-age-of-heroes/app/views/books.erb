@@ -1,0 +1,19 @@
+<h1>List of Books</h1>
+
+<p>
+  Anything I write is treated literally.
+  Brit says, "Double quotes don't need to be escaped anymore, see?"
+  <%
+    nums = [1,2,3,4]
+    nums.each do |x|
+      puts x + 1
+    end
+  %>
+  2 + 2 == <%= 2 + 2 %>
+</p>
+
+<ul>
+  <% books.each do |book| %>
+    <li><%= book.title %></li>
+  <% end %>
+</ul>
