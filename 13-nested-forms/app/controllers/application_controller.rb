@@ -16,7 +16,13 @@ class ApplicationController < Sinatra::Base
   # end
 
   get '/books' do
-    @books = Book.all
+    if params['query']
+      # @books = Book.where(title: "cookies")
+      @query = params['query']
+      @books = Book.where("title LIKE ?", "%#{params[:query]}%")
+    else
+      @books = Book.all
+    end
     erb(:books)
   end
 
