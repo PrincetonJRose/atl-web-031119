@@ -3,7 +3,7 @@
 ### Concepts
 
 * raw form vs form_tag vs form_for/form_with
-  * talk `csrf_meta_tags`
+  * talk `form_authenticity_token`
 * path_helpers / link_to vs an a tag
 * talk strong params/mass assignment
 * see edit/update/destroy

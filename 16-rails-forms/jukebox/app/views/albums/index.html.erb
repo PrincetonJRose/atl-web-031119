@@ -1,0 +1,7 @@
+<h1>Here are all our dope records</h1>
+
+<ul>
+  <% @albums.each do |album| %>
+    <li><%= link_to(album.title, album_path(album)) %></li>
+  <% end %>
+</ul>

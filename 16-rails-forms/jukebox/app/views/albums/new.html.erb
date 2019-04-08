@@ -1,0 +1,20 @@
+<h1>Add an Album</h1>
+
+<!-- <form action="<%= albums_path %>" method="POST">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+  <input type="text" name="title" placeholder="Title" />
+  <input type="text" name="artist" placeholder="Artist" />
+  <input type="number" name="year" placeholder="Year" />
+  <input type="number" name="rating" placeholder="Rating" />
+  <input type="submit" value="Add Album" />
+</form> -->
+
+<%= form_tag(albums_path) do %>
+  <%= text_field_tag("title", nil, placeholder: "Title") %>
+  <%= text_field_tag("artist", nil, placeholder: "Artist") %>
+  <%= number_field_tag("year", nil, placeholder: "Year", in: 1900..2020) %>
+  <%= number_field_tag("rating", nil, placeholder: "Rating", in: 1..10) %>
+  <%= submit_tag("Add Album") %>
+<% end %>
+
+<%= link_to("Homepage", albums_path) %>
