@@ -1,0 +1,8 @@
+<h1>What a cute pet!</h1>
+<h2><%= @pet.name %></h2>
+<h3>Owner: <%= link_to(@pet.person.name, person_path(@pet.person)) %></h3>
+<h4>Likes: <%= @pet.likes %></h4>
+
+<img style="width: 50%; height: 50%;" src="<%= @pet.image %>" />
+
+<%= link_to("All Pets", pets_path) %>

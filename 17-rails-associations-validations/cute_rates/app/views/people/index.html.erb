@@ -1,0 +1,9 @@
+<h1>People with Pets</h1>
+
+<ul>
+  <% @people.each do |person| %>
+    <li><%= link_to(person.name, person_path(person)) %></li>
+  <% end %>
+</ul>
+
+<%= link_to("Add a new Person", new_person_path) %>
