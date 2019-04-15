@@ -3,6 +3,10 @@ Rails.application.routes.draw do
   # get '/', to: 'example#testing', as: 'root'
   root to: 'example#testing'
 
-  resources :pets, except: [:destroy]
+  resources :pets
   resources :people, only: [:show, :index, :new, :create]
+
+  get '/login', to: 'sessions#new', as: 'login'
+  post '/login', to: 'sessions#create'
+  delete '/login', to: 'sessions#destroy'
 end

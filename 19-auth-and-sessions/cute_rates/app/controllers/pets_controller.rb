@@ -1,4 +1,6 @@
 class PetsController < ApplicationController
+  before_action :authorize!, except: [:index, :show]
+
   def index
     @pets = Pet.all
     render :index
@@ -16,7 +18,8 @@ class PetsController < ApplicationController
   end
 
   def create
-    @pet = Pet.new(pet_params)
+    @pet = current_user.pets.build(pet_params)
+    # @pet = Pet.new(pet_params)
     if @pet.save
       redirect_to pet_path(@pet.id)
     else
@@ -36,8 +39,18 @@ class PetsController < ApplicationController
     redirect_to pet_path(@pet.id)
   end
 
+  def destroy
+    if current_user && pet.person_id == current_user.id
+      @pet = Pet.find(params[:id])
+      @pet.destroy
+    else
+      flash[:error] = "You don't have permission to do that."
+    end
+    redirect_to pets_path
+  end
+
   private
   def pet_params
-    params.require(:pet).permit(:name, :image, :likes, :person_id)
+    params.require(:pet).permit(:name, :image, :likes)
   end
 end

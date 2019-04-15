@@ -24,6 +24,7 @@ class PeopleController < ApplicationController
   private
   def person_params
     params.require(:person).permit(:name, :age, :location,
+      :username, :password,
       pets_attributes: [:name, :image, :likes])
   end
 end

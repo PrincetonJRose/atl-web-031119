@@ -21,4 +21,8 @@
   </div>
 </article>
 
+<% if current_user && current_user.id == @pet.person_id %>
+  <%= link_to("Delete this pet", pet_path(@pet), method: :delete) %>
+<% end %>
+
 <%= link_to("All Pets", pets_path) %>
