@@ -1,0 +1,2 @@
+module CutePetsControllerHelper
+end

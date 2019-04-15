@@ -1,0 +1,10 @@
+<h1><%= @person.name %></h1>
+<h3><%= @person.age %> in <%= @person.location %></h3>
+
+<h4>With these adorable pets...</h4>
+
+<ul>
+  <% @person.pets.each do |pet| %>
+    <li><%= link_to(pet.name, pet_path(pet)) %></li>
+  <% end %>
+</ul>
