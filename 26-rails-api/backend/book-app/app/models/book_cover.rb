@@ -1,0 +1,2 @@
+class BookCover < ApplicationRecord
+end
