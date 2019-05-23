@@ -7,7 +7,8 @@ class DogForm extends React.Component {
     age: "",
     description: "",
     likes: 1,
-    adopted: false
+    adopted: false,
+    errors: []
   }
 
   saveDog = (event) => {
@@ -15,12 +16,14 @@ class DogForm extends React.Component {
     fetch("http://localhost:3000/dogs", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "Access-Token": localStorage.getItem("token")
       },
       body: JSON.stringify(this.state)
     }).then(res => res.json())
     .then(json => {
       if (json.errors) {
+        this.setState({ errors: json.errors })
         console.log("oops, didn't work")
       } else {
         this.props.addDog(json)
@@ -28,8 +31,25 @@ class DogForm extends React.Component {
     })
   }
 
+  displayErrors = () => {
+    if (this.state.errors.length > 0) {
+      debugger;
+      return (
+        <div className='form-errors'>
+          <p>Form Errors</p>
+          <ul>
+            { this.state.errors.map(msg => <li>{msg}</li>) }
+          </ul>
+        </div>
+      )
+    } else {
+      return null;
+    }
+  }
+
   render = () =>
     <form class="ui form" onSubmit={this.saveDog}>
+      { this.displayErrors() }
       <div class="field">
         <label>Name</label>
         <input type="text" name="name" placeholder="Name"

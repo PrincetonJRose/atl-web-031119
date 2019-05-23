@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 const Navbar = (props) => {
   const menuClasses = `ui inverted ${props.color} menu`
   const iconClasses = `icon ${props.icon}`
+
   return (
     <div className={menuClasses}>
       <Link to="/" className="item">
@@ -21,6 +22,16 @@ const Navbar = (props) => {
       <Link to="/about" className="item" style={{ color: 'black' }} >
         <div className="content">About Us</div>
       </Link>
+      {
+        localStorage.getItem("token") ?
+        <Link to="/" className="item" style={{ color: 'black' }}
+              onClick={(e) => localStorage.clear() } >
+              <div className="content">Logout</div>
+        </Link> :
+        <Link to="/login" className="item" style={{ color: 'black' }} >
+          <div className="content">Login</div>
+        </Link>
+      }
     </div>
   )
 }

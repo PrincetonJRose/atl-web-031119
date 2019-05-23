@@ -18,6 +18,7 @@ What are the backend parts we need?
   * new: JWT for encrypting data to send to the browser
     * a secret key for JWT
     * a way to store the secret safely (.env / dotenv-rails)
+      * make sure the .env file gets added to your gitignore!
   * changed: `current_user` and `authorize!` methods
     * `current_user` should now check the request headers
       for a JWT token to decode

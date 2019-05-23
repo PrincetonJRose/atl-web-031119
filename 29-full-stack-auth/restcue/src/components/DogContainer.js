@@ -2,6 +2,7 @@ import React from 'react';
 import DogList from './DogList'
 import DogDetail from './DogDetail'
 import DogForm from './DogForm'
+import LoginForm from './LoginForm'
 
 import { Switch, Route } from 'react-router-dom';
 
@@ -34,6 +35,7 @@ class DogContainer extends React.Component {
           dogs={this.state.dogs}
         />
         <Switch>
+          <Route path="/login" component={LoginForm} />
           <Route path="/dogs/new" component={() => {
             return <DogForm addDog={this.addDog} />
           }} />
