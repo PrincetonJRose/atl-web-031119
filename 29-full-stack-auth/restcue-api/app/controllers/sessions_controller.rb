@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
       render json: { token: token, cart: [] }, status: :ok
     else
       ## send back some angry json response
-      render json: { errors: "Incorrect email or password" },
+      render json: { errors: ["Incorrect email or password"] },
              status: :unauthorized
     end
   end
