@@ -3,37 +3,53 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import logo from "./logo.svg";
 import "./App.css";
+import { createStore } from 'redux';
 
-class App extends Component {
-  state = { count: 0 };
+const initialState = {
+  count: 17
+};
 
-  increment = () => {
-    this.setState(prevState => ({ count: prevState.count + 1 }));
-  };
-
-  decrement = () => {
-    this.setState(prevState => ({ count: prevState.count - 1 }));
-  };
-
-  render() {
-    return (
-      <div className="App">
-        <Header count={this.state.count} />
-        <Counter
-          count={this.state.count}
-          increment={this.increment}
-          decrement={this.decrement}
-        />
-      </div>
-    );
+const rootReducer = (state=initialState, action) => {
+  switch (action.type) {
+    case "ADD": {
+      return { count: state.count + 1 };
+    }
+    case "SUB": {
+      let amount = action.amount || 1;
+      return { count: state.count - amount };
+    }
+    case "MUL": {
+      let amount = action.amount || 1;
+      return { count: state.count * amount };
+    }
+    default: return state
   }
+};
+
+const theStore = createStore(
+  rootReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
+
+let App = (props) => {
+  return (
+    <div className="App">
+      <Header />
+      <Counter />
+    </div>
+  );
 }
 
+
 class Header extends Component {
+  componentDidMount = () => {
+    theStore.subscribe(() => this.forceUpdate())
+  }
+
   renderDescription = () => {
-    const remainder = this.props.count % 5;
+    const remainder = theStore.getState().count % 5;
     const upToNext = 5 - remainder;
-    return `The current count is less than ${this.props.count + upToNext}`;
+    return `The current count is less than ${theStore.getState().count + upToNext}`;
   };
 
   render() {
@@ -48,15 +64,22 @@ class Header extends Component {
 }
 
 class Counter extends Component {
+  componentDidMount = () =>  {
+    theStore.subscribe(() => this.forceUpdate())
+  }
+
   render() {
     return (
       <div className="Counter">
-        <h1>{this.props.count}</h1>
-        <button onClick={this.props.decrement}> - </button>
-        <button onClick={this.props.increment}> + </button>
+        <h1>{theStore.getState().count}</h1>
+        <button onClick={() => theStore.dispatch({ type: "SUB", amount: 5 }) }>- 5</button>
+        <button onClick={() => theStore.dispatch({ type: "SUB" })}> - </button>
+        <button onClick={() => theStore.dispatch({ type: "ADD" })}> + </button>
+        <button onClick={() => theStore.dispatch({ type: "MUL", amount: 2 }) }>* 2</button>
       </div>
-    );
+    );  
   }
 }
+
 
 ReactDOM.render(<App />, document.getElementById("root"));
